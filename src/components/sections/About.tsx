@@ -31,7 +31,11 @@ export default function About() {
             transition={{ duration: 0.7, delay: 0.2 }}
             className="flex justify-center md:justify-start"
           >
-            <div className="relative w-64 h-80 rounded-xl overflow-hidden border-2 border-card-border hover:border-accent/30 transition-colors duration-300 glow-accent">
+            <motion.div
+              animate={{ y: [0, -8, 0] }}
+              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+              className="relative w-64 h-80 rounded-xl overflow-hidden border-2 border-card-border hover:border-accent/30 transition-colors duration-300 glow-accent"
+            >
               <Image
                 src="/profile.jpeg"
                 alt="Dimas Alvin Faiz"
@@ -42,7 +46,7 @@ export default function About() {
                 blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAMCAgMCAgMDAwMEAwMEBQgFBQQEBQoHBwYIDAoMCwsKCwsMDhEQDQ4RDgsLEBYQERMUFRUVDA8XGBYUGBIUFRT/2wBDAQMEBAUEBQkFBQkUDQsNFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBT/wAARCAAIAAoDASIAAhEBAxEB/8QAFAABAAAAAAAAAAAAAAAAAAAABv/EAB4QAAICAgIDAAAAAAAAAAAAAAECAAMEIQUSEzFB/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAZEQACAwEAAAAAAAAAAAAAAAABAgADEUH/2gAMAwEAAhEDEEQA/9oADAMBAAIRAxEAPwCp4vkMrHxlrybrEUaLMSQP2IiJFbsdhMmf/9k="
                 priority
               />
-            </div>
+            </motion.div>
           </motion.div>
 
           {/* Bio Text */}
