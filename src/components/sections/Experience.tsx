@@ -54,7 +54,7 @@ export default function Experience() {
                 {/* Timeline dot */}
                 <div className="absolute left-2.5 top-1.5 w-4 h-4 rounded-full bg-accent/20 border-2 border-accent" />
 
-                <div className="p-6 bg-card-bg border border-card-border rounded-xl hover:border-accent/20 transition-colors duration-300">
+                <div className="p-6 bg-card-bg border border-card-border rounded-xl hover:border-accent/20 hover:shadow-[0_0_30px_rgba(0,240,255,0.08)] hover:scale-[1.02] transition-all duration-300">
                   <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-3">
                     <div className="flex items-center gap-2">
                       <Briefcase size={16} className="text-accent" />

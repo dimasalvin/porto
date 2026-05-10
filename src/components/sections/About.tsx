@@ -1,7 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { useInView } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { Code2, Rocket, Users } from "lucide-react";
 import Image from "next/image";
@@ -37,7 +36,10 @@ export default function About() {
                 src="/profile.jpeg"
                 alt="Dimas Alvin Faiz"
                 fill
+                sizes="(max-width: 768px) 256px, 256px"
                 className="object-cover object-top"
+                placeholder="blur"
+                blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAMCAgMCAgMDAwMEAwMEBQgFBQQEBQoHBwYIDAoMCwsKCwsMDhEQDQ4RDgsLEBYQERMUFRUVDA8XGBYUGBIUFRT/2wBDAQMEBAUEBQkFBQkUDQsNFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBT/wAARCAAIAAoDASIAAhEBAxEB/8QAFAABAAAAAAAAAAAAAAAAAAAABv/EAB4QAAICAgIDAAAAAAAAAAAAAAECAAMEIQUSEzFB/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAZEQACAwEAAAAAAAAAAAAAAAABAgADEUH/2gAMAwEAAhEDEEQA/9oADAMBAAIRAxEAPwCp4vkMrHxlrybrEUaLMSQP2IiJFbsdhMmf/9k="
                 priority
               />
             </div>
@@ -76,21 +78,21 @@ export default function About() {
             transition={{ duration: 0.7, delay: 0.4 }}
             className="grid gap-4"
           >
-            <div className="p-6 bg-card-bg border border-card-border rounded-xl hover:border-accent/30 transition-colors duration-300">
+            <div className="p-6 bg-card-bg border border-card-border rounded-xl hover:border-accent/30 hover:shadow-[0_0_30px_rgba(0,240,255,0.08)] hover:scale-[1.02] transition-all duration-300">
               <Code2 className="text-accent mb-3" size={28} />
               <h3 className="font-semibold text-lg mb-1">Clean Code Advocate</h3>
               <p className="text-muted text-sm">
                 Writing readable, testable, and maintainable code is not optional — it&apos;s the standard.
               </p>
             </div>
-            <div className="p-6 bg-card-bg border border-card-border rounded-xl hover:border-accent/30 transition-colors duration-300">
+            <div className="p-6 bg-card-bg border border-card-border rounded-xl hover:border-accent/30 hover:shadow-[0_0_30px_rgba(0,240,255,0.08)] hover:scale-[1.02] transition-all duration-300">
               <Rocket className="text-accent-secondary mb-3" size={28} />
               <h3 className="font-semibold text-lg mb-1">Performance Obsessed</h3>
               <p className="text-muted text-sm">
                 Every millisecond counts. I optimize for speed, accessibility, and seamless UX.
               </p>
             </div>
-            <div className="p-6 bg-card-bg border border-card-border rounded-xl hover:border-accent/30 transition-colors duration-300">
+            <div className="p-6 bg-card-bg border border-card-border rounded-xl hover:border-accent/30 hover:shadow-[0_0_30px_rgba(0,240,255,0.08)] hover:scale-[1.02] transition-all duration-300">
               <Users className="text-accent mb-3" size={28} />
               <h3 className="font-semibold text-lg mb-1">Team Player</h3>
               <p className="text-muted text-sm">

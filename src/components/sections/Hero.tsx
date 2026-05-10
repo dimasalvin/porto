@@ -44,7 +44,7 @@ export default function Hero() {
           transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
           className="text-lg md:text-xl text-muted max-w-2xl mx-auto mb-10 leading-relaxed"
         >
-          I craft modern, performant, and visually compelling web experiences.
+          I craft <span className="text-foreground font-medium">modern</span>, <span className="text-foreground font-medium">performant</span>, and <span className="text-foreground font-medium">visually compelling</span> web experiences.
           Passionate about clean code, scalable architecture, and pixel-perfect UI.
         </motion.p>
 

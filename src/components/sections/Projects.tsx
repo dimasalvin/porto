@@ -58,7 +58,7 @@ export default function Projects() {
               initial={{ opacity: 0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.2 + index * 0.15 }}
-              className="group p-6 bg-card-bg border border-card-border rounded-xl hover:border-accent/30 transition-all duration-300 flex flex-col"
+              className="group p-6 bg-card-bg border border-card-border rounded-xl hover:border-accent/30 hover:shadow-[0_0_30px_rgba(0,240,255,0.08)] hover:scale-[1.02] transition-all duration-300 flex flex-col"
             >
               <h3 className="text-xl font-semibold mb-3 group-hover:text-accent transition-colors">
                 {project.title}

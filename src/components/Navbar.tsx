@@ -17,11 +17,35 @@ const navLinks = [
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState("#home");
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  useEffect(() => {
+    const sectionIds = navLinks.map((link) => link.href.replace("#", ""));
+    const observers: IntersectionObserver[] = [];
+
+    sectionIds.forEach((id) => {
+      const el = document.getElementById(id);
+      if (!el) return;
+
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) {
+            setActiveSection(`#${id}`);
+          }
+        },
+        { rootMargin: "-40% 0px -55% 0px" }
+      );
+      observer.observe(el);
+      observers.push(observer);
+    });
+
+    return () => observers.forEach((obs) => obs.disconnect());
   }, []);
 
   return (
@@ -49,9 +73,20 @@ export default function Navbar() {
             <li key={link.href}>
               <Link
                 href={link.href}
-                className="text-sm text-muted hover:text-accent transition-colors duration-200 font-mono"
+                className={`text-sm transition-colors duration-200 font-mono relative ${
+                  activeSection === link.href
+                    ? "text-accent"
+                    : "text-muted hover:text-accent"
+                }`}
               >
                 {link.label}
+                {activeSection === link.href && (
+                  <motion.span
+                    layoutId="activeNav"
+                    className="absolute -bottom-1 left-0 right-0 h-px bg-accent"
+                    transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                  />
+                )}
               </Link>
             </li>
           ))}
@@ -82,7 +117,11 @@ export default function Navbar() {
                   <Link
                     href={link.href}
                     onClick={() => setIsOpen(false)}
-                    className="text-sm text-muted hover:text-accent transition-colors duration-200 font-mono"
+                    className={`text-sm transition-colors duration-200 font-mono ${
+                      activeSection === link.href
+                        ? "text-accent"
+                        : "text-muted hover:text-accent"
+                    }`}
                   >
                     {link.label}
                   </Link>

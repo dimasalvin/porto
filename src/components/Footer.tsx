@@ -29,7 +29,7 @@ export default function Footer() {
             <LinkedinIcon size={20} />
           </Link>
           <Link
-            href="mailto:contact@dimasalvin.dev"
+            href="mailto:dimasalvinf@gmail.com"
             className="text-muted hover:text-accent transition-colors"
             aria-label="Email"
           >

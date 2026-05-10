@@ -1,24 +1,29 @@
 "use client";
 
-import { motion, useInView } from "framer-motion";
+import { motion, useInView, AnimatePresence } from "framer-motion";
 import { useRef, useState } from "react";
 import { Send, CheckCircle } from "lucide-react";
 
 export default function Contact() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
-  const [submitted, setSubmitted] = useState(false);
-  const [loading, setLoading] = useState(false);
+  const [showToast, setShowToast] = useState(false);
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setLoading(true);
+    const form = e.currentTarget;
+    const name = (form.elements.namedItem("name") as HTMLInputElement).value;
+    const email = (form.elements.namedItem("email") as HTMLInputElement).value;
+    const subject = (form.elements.namedItem("subject") as HTMLInputElement).value;
+    const message = (form.elements.namedItem("message") as HTMLTextAreaElement).value;
 
-    // Simulate form submission (replace with actual API endpoint)
-    await new Promise((resolve) => setTimeout(resolve, 1000));
+    const body = `Hi Dimas,%0D%0A%0D%0AMy name is ${encodeURIComponent(name)} (${encodeURIComponent(email)}).%0D%0A%0D%0A${encodeURIComponent(message)}`;
+    const mailtoUrl = `mailto:dimasalvinf@gmail.com?subject=${encodeURIComponent(subject)}&body=${body}`;
 
-    setSubmitted(true);
-    setLoading(false);
+    window.open(mailtoUrl, "_blank");
+
+    setShowToast(true);
+    setTimeout(() => setShowToast(false), 4000);
   };
 
   return (
@@ -43,15 +48,6 @@ export default function Contact() {
           transition={{ duration: 0.7, delay: 0.2 }}
           className="p-8 bg-card-bg border border-card-border rounded-xl"
         >
-          {submitted ? (
-            <div className="text-center py-8">
-              <CheckCircle className="mx-auto text-accent mb-4" size={48} />
-              <h3 className="text-xl font-semibold mb-2">Message Sent!</h3>
-              <p className="text-muted">
-                Thanks for reaching out. I&apos;ll get back to you as soon as possible.
-              </p>
-            </div>
-          ) : (
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
@@ -121,22 +117,32 @@ export default function Contact() {
               </div>
               <button
                 type="submit"
-                disabled={loading}
-                className="w-full flex items-center justify-center gap-2 px-6 py-3 bg-accent/10 border border-accent/30 text-accent rounded-lg font-mono text-sm hover:bg-accent/20 hover:border-accent/50 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed glow-accent"
+                className="w-full flex items-center justify-center gap-2 px-6 py-3 bg-accent/10 border border-accent/30 text-accent rounded-lg font-mono text-sm hover:bg-accent/20 hover:border-accent/50 transition-all duration-300 glow-accent"
               >
-                {loading ? (
-                  <span>Sending...</span>
-                ) : (
-                  <>
-                    <Send size={16} />
-                    Send Message
-                  </>
-                )}
+                <Send size={16} />
+                Send Message
               </button>
             </form>
-          )}
         </motion.div>
       </div>
+
+      {/* Toast notification */}
+      <AnimatePresence>
+        {showToast && (
+          <motion.div
+            initial={{ opacity: 0, y: 50, x: "-50%" }}
+            animate={{ opacity: 1, y: 0, x: "-50%" }}
+            exit={{ opacity: 0, y: 50, x: "-50%" }}
+            transition={{ type: "spring", stiffness: 300, damping: 25 }}
+            className="fixed bottom-6 left-1/2 z-50 flex items-center gap-3 px-5 py-3 bg-card-bg border border-accent/30 rounded-lg shadow-lg glow-accent"
+          >
+            <CheckCircle size={18} className="text-accent" />
+            <span className="text-sm font-mono text-foreground">
+              Email client opened — send your message!
+            </span>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 }

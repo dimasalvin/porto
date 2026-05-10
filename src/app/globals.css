@@ -66,6 +66,26 @@ body {
   background-size: 60px 60px;
 }
 
+/* Typography emphasis */
+.text-emphasis {
+  color: var(--foreground);
+  font-weight: 500;
+}
+
+.text-highlight {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+/* Section subtitle */
+.section-subtitle {
+  font-family: var(--font-mono), monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
 /* Noise texture overlay */
 .noise-overlay::before {
   content: "";
@@ -77,4 +97,11 @@ body {
   opacity: 0.02;
   pointer-events: none;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+}
+
+/* Custom cursor - hide default on desktop */
+@media (pointer: fine) {
+  * {
+    cursor: none !important;
+  }
 }
