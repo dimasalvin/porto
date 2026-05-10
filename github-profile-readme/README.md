@@ -51,12 +51,12 @@ const dimas = {
 ### 📊 GitHub Stats
 
 <p align="center">
-  <img src="https://github-readme-stats.vercel.app/api?username=dimasalvin&show_icons=true&theme=tokyonight&hide_border=true&bg_color=0a0a0f&title_color=00f0ff&icon_color=7c3aed&text_color=e4e4e7" alt="GitHub Stats" height="170"/>
-  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=dimasalvin&layout=compact&theme=tokyonight&hide_border=true&bg_color=0a0a0f&title_color=00f0ff&text_color=e4e4e7" alt="Top Languages" height="170"/>
+  <img src="https://github-readme-stats-sigma-five.vercel.app/api?username=dimasalvin&show_icons=true&theme=tokyonight&hide_border=true&bg_color=0a0a0f&title_color=00f0ff&icon_color=7c3aed&text_color=e4e4e7" alt="GitHub Stats" height="170"/>
+  <img src="https://github-readme-stats-sigma-five.vercel.app/api/top-langs/?username=dimasalvin&layout=compact&theme=tokyonight&hide_border=true&bg_color=0a0a0f&title_color=00f0ff&text_color=e4e4e7" alt="Top Languages" height="170"/>
 </p>
 
 <p align="center">
-  <img src="https://github-readme-streak-stats.herokuapp.com?user=dimasalvin&theme=tokyonight&hide_border=true&background=0A0A0F&ring=00F0FF&fire=7C3AED&currStreakLabel=00F0FF&sideLabels=E4E4E7&dates=71717A" alt="GitHub Streak"/>
+  <img src="https://streak-stats.demolab.com?user=dimasalvin&theme=tokyonight&hide_border=true&background=0A0A0F&ring=00F0FF&fire=7C3AED&currStreakLabel=00F0FF&sideLabels=E4E4E7&dates=71717A" alt="GitHub Streak"/>
 </p>
 
 ---
