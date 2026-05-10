@@ -54,7 +54,7 @@ export default function CustomCursor() {
           y: position.y - 4,
           scale: isHovering ? 2.5 : 1,
         }}
-        transition={{ type: "spring", stiffness: 500, damping: 28, mass: 0.5 }}
+        transition={{ duration: 0 }}
       >
         <div className="w-2 h-2 bg-accent rounded-full" />
       </motion.div>
@@ -68,7 +68,7 @@ export default function CustomCursor() {
           scale: isHovering ? 1.5 : 1,
           opacity: isHovering ? 0.5 : 0.3,
         }}
-        transition={{ type: "spring", stiffness: 250, damping: 20, mass: 0.8 }}
+        transition={{ type: "spring", stiffness: 800, damping: 35, mass: 0.2 }}
       >
         <div className="w-8 h-8 border border-accent/50 rounded-full" />
       </motion.div>
