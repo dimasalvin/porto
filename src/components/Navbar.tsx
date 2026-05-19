@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import Link from "next/link";
 
@@ -21,7 +20,7 @@ export default function Navbar() {
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -49,11 +48,8 @@ export default function Navbar() {
   }, []);
 
   return (
-    <motion.header
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.6, ease: "easeOut" }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+    <header
+      className={`navbar-rise fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
           ? "bg-background/80 backdrop-blur-xl border-b border-card-border"
           : "bg-transparent"
@@ -69,68 +65,65 @@ export default function Navbar() {
 
         {/* Desktop Navigation */}
         <ul className="hidden md:flex items-center gap-8">
-          {navLinks.map((link) => (
-            <li key={link.href}>
-              <Link
-                href={link.href}
-                className={`text-sm transition-colors duration-200 font-mono relative ${
-                  activeSection === link.href
-                    ? "text-accent"
-                    : "text-muted hover:text-accent"
-                }`}
-              >
-                {link.label}
-                {activeSection === link.href && (
-                  <motion.span
-                    layoutId="activeNav"
-                    className="absolute -bottom-1 left-0 right-0 h-px bg-accent"
-                    transition={{ type: "spring", stiffness: 380, damping: 30 }}
+          {navLinks.map((link) => {
+            const isActive = activeSection === link.href;
+            return (
+              <li key={link.href}>
+                <Link
+                  href={link.href}
+                  className={`text-sm transition-colors duration-200 font-mono relative ${
+                    isActive ? "text-accent" : "text-muted hover:text-accent"
+                  }`}
+                >
+                  {link.label}
+                  <span
+                    className={`absolute -bottom-1 left-0 right-0 h-px bg-accent transition-opacity duration-200 ${
+                      isActive ? "opacity-100" : "opacity-0"
+                    }`}
                   />
-                )}
-              </Link>
-            </li>
-          ))}
+                </Link>
+              </li>
+            );
+          })}
         </ul>
 
         {/* Mobile Menu Button */}
         <button
-          onClick={() => setIsOpen(!isOpen)}
+          onClick={() => setIsOpen((v) => !v)}
           className="md:hidden text-foreground hover:text-accent transition-colors"
           aria-label="Toggle menu"
+          aria-expanded={isOpen}
         >
           {isOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
       </nav>
 
       {/* Mobile Navigation */}
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-background/95 backdrop-blur-xl border-b border-card-border"
-          >
-            <ul className="flex flex-col items-center gap-4 py-6">
-              {navLinks.map((link) => (
-                <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    onClick={() => setIsOpen(false)}
-                    className={`text-sm transition-colors duration-200 font-mono ${
-                      activeSection === link.href
-                        ? "text-accent"
-                        : "text-muted hover:text-accent"
-                    }`}
-                  >
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </motion.header>
+      <div
+        className={`md:hidden overflow-hidden bg-background/95 backdrop-blur-xl transition-[max-height,opacity] duration-300 ease-out ${
+          isOpen
+            ? "max-h-96 opacity-100 border-b border-card-border"
+            : "max-h-0 opacity-0"
+        }`}
+      >
+        <ul className="flex flex-col items-center gap-4 py-6">
+          {navLinks.map((link) => (
+            <li key={link.href}>
+              <Link
+                href={link.href}
+                onClick={() => setIsOpen(false)}
+                className={`text-sm transition-colors duration-200 font-mono ${
+                  activeSection === link.href
+                    ? "text-accent"
+                    : "text-muted hover:text-accent"
+                }`}
+              >
+                {link.label}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </header>
   );
 }

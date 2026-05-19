@@ -105,3 +105,70 @@ body {
     cursor: none !important;
   }
 }
+
+/* Lightweight intro fade (replaces framer-motion PageTransition) */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.6s ease-out both;
+}
+
+/* Hero entrance — staggered slide-up via CSS to avoid client JS at first paint */
+@keyframes heroRise {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero-rise {
+  animation: heroRise 0.8s ease-out both;
+}
+
+.hero-rise-1 { animation-delay: 0s; }
+.hero-rise-2 { animation-delay: 0.15s; }
+.hero-rise-3 { animation-delay: 0.3s; }
+.hero-rise-4 { animation-delay: 0.45s; }
+.hero-rise-5 { animation-delay: 0.6s; }
+
+/* Hero scroll indicator bounce */
+@keyframes heroBounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(8px); }
+}
+
+.hero-bounce {
+  animation: heroBounce 2s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-fade-in,
+  .hero-rise,
+  .hero-bounce,
+  .navbar-rise {
+    animation: none;
+  }
+}
+
+/* Navbar slide-down entrance */
+@keyframes navbarRise {
+  from {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.navbar-rise {
+  animation: navbarRise 0.6s ease-out both;
+}
