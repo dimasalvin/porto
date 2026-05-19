@@ -21,7 +21,7 @@ export default function Hero() {
           </p>
         </div>
 
-        <h1 className="hero-rise hero-rise-2 text-5xl md:text-7xl font-bold tracking-tight mb-6">
+        <h1 className="text-5xl md:text-7xl font-bold tracking-tight mb-6">
           Hi, I&apos;m{" "}
           <span className="gradient-text">Dimas Alvin Faiz</span>
         </h1>
